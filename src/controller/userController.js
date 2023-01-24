@@ -71,6 +71,32 @@ class UserController {
         const token = generateJwt(req.user.id, req.user.email, req.user.role)
         return res.json({token})
     }
+
+// GET  http://localhost:8080/api/user/  
+async apps(req, res) {
+   // const {email, password} = req.body
+
+  // const {name} = req.body
+    console.log("Work")
+   // console.log("email", email)
+
+   // const user = await Table.User.findOne(
+    //    {where: {email}}
+        
+    //    )
+  //  if (!user) {
+  //      return next(ApiError.internal('Пользователь не найден'))
+  //  }
+  //  let comparePassword = bcrypt.compareSync(password, user.password)
+  //  if (!comparePassword) {
+  //      return next(ApiError.internal('Указан неверный пароль'))
+  //  }
+  //  const token = generateJwt(user.id, user.email, user.role)
+    return res.json({message: "Ok"})
+}
+
+
+
 }
 
 module.exports = new UserController()

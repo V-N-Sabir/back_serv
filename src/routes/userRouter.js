@@ -12,7 +12,7 @@ const authMiddleware = require('../middleware/authMiddleware')
 //import userController from '../controller/userController.js'
 //import authMiddleware from '../middleware/authMiddleware.js'
 
-
+router.get('/', userController.apps)
 router.post('/registration', userController.registration)
 router.post('/login', userController.login)
 router.get('/auth', authMiddleware, userController.check)
