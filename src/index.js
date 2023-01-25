@@ -40,7 +40,7 @@ app.use(cors())
 app.use(express.json()) 
 //app.use(express.urlencoded({extended: false}))
 
-app.use(express.static(path.resolve("./", 'static')))
+app.use(express.static(path.resolve("./", "src", 'static')))
 // ++ app.use(express.static(path.resolve('D:/JavaScript/REACT JS/React JS Ulbu TV/React JS Интернет-Магазин/server_m/static')))
 app.use(fileUpload({}))
 
