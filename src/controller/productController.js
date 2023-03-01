@@ -39,14 +39,15 @@ async createProduct(req, res) {
                     console.log('Файл не сохранён!', err)
                 } else { console.log('Файл сохранён!')}               
               })
-
-            } else if (req.files) {           
-            const {img} = req.files
-            img.mv(path.resolve("./", 'static', fileName))
-            // -- img.mv(path.resolve(__dirname, '..', 'static', fileName))
-             } else if (picabox) {
+//TEST
+//            } else if (req.files) {           
+//            const {img} = req.files
+//            img.mv(path.resolve("./", 'static', fileName))
+//            // -- img.mv(path.resolve(__dirname, '..', 'static', fileName))
+//TEST             
+            } else {
                 fileName = img
-                console.log("img", img)
+               // console.log("img", img)
             }  
         const result = await Table.Product.create({name, pageId, img:fileName, price})
         return res.json(result)
