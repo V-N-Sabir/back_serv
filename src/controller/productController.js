@@ -22,7 +22,7 @@ class ProductController {
 
 
 // 13:36
-//http://localhost:8080/api/product POST
+//POST http://localhost:8080/api/product 
 //{"products":[{"name": "Куллер","img": "kartinka", "pageId": 1}]} - req.body
 async createProduct(req, res) {
     //console.log("------------------./ : ", path.resolve("./", 'static'))
@@ -30,7 +30,7 @@ async createProduct(req, res) {
     try {
           
        // 1 Имя файла// 2 строка или буффер// 3 {encoding: 'base64'} //fs.writeFile()
-        const {name, pageId, price, img, binarydata} = req.body
+        const {name, pageId, price, img, binarydata, picabox} = req.body
         
         let fileName = uuidv4() + ".jpg"
         if (binarydata) {
@@ -40,12 +40,14 @@ async createProduct(req, res) {
                 } else { console.log('Файл сохранён!')}               
               })
 
-        } else {           
+            } else if (req.files) {           
             const {img} = req.files
             img.mv(path.resolve("./", 'static', fileName))
             // -- img.mv(path.resolve(__dirname, '..', 'static', fileName))
-        }
-
+             } else if (picabox) {
+                fileName = img
+                console.log("img", img)
+            }  
         const result = await Table.Product.create({name, pageId, img:fileName, price})
         return res.json(result)
 
@@ -76,7 +78,7 @@ async createProduct(req, res) {
     }		
 }
 /*
-// http://localhost:8080/api/product/one POST
+//POST http://localhost:8080/api/product/one 
 async createOneProduct(req, res) {
 
     try {
@@ -88,6 +90,7 @@ async createOneProduct(req, res) {
     }		
 }
 */
+//https://test-back-npfu.onrender.com:8081/api/product
 //GET http://localhost:8080/api/product?limit=3&page=2
 async getAllProduct(req, res) {
     try {	   
