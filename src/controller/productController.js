@@ -34,13 +34,21 @@ async createProduct(req, res) {
         
         let fileName = uuidv4() + ".jpg"
         if (binarydata) {
+            // Создание папки
+            if(!fs.existsSync('static')) {
+				fs.mkdirSync('static')
+			}	
             fs.writeFile(path.resolve("./", 'static', fileName), img,{encoding: 'base64'}, (err) => {
                 if (err) {
                     console.log('Файл не сохранён!', err)
                 } else { console.log('Файл сохранён!')}               
               })
 //TEST
-//            } else if (req.files) {           
+//            } else if (req.files) { 
+//                // Создание папки
+//                if(!fs.existsSync('static')) {
+//                    fs.mkdirSync('static')
+//                }	          
 //            const {img} = req.files
 //            img.mv(path.resolve("./", 'static', fileName))
 //            // -- img.mv(path.resolve(__dirname, '..', 'static', fileName))
